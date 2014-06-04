@@ -8,4 +8,19 @@
   <%= @product.description %>
 </p>
 
+<h2>Orders</h2>
+<% @product.orders.each do |order| %>
+  <p>
+    <strong>Date:</strong>
+    <%= order.created_at %>
+  </p>
+<% end %>
+
+<h2>Create an order:</h2>
+<%= form_for([@product, @product.orders.build]) do |f| %>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+
 <%= link_to 'Back', products_path %> | <%= link_to 'Edit', edit_product_path(@product) %>
