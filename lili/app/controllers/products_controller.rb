@@ -40,6 +40,7 @@ class ProductsController < ApplicationController
         if @product.save
             redirect_to @product
         else
+            @suppliers = Supplier.all
             render 'new'
         end
     end
