@@ -11,13 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140604214107) do
+ActiveRecord::Schema.define(version: 20140604221230) do
 
   create_table "items", force: true do |t|
     t.integer  "order_id"
     t.integer  "product_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "amount"
+    t.decimal  "cost"
+    t.integer  "size"
   end
 
   add_index "items", ["order_id"], name: "index_items_on_order_id"
