@@ -21,6 +21,11 @@
   </p>
 
   <p>
+    <%= f.label :title %><br>
+    <%= f.collection_select :supplier_id, @suppliers, :id, :name, include_blank: true %>
+  </p>
+
+  <p>
     <%= f.submit %>
   </p>
 <% end %>

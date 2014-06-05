@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
     def new
         @product = Product.new
+        @suppliers = Supplier.all
     end
 
     def index
@@ -13,6 +14,7 @@ class ProductsController < ApplicationController
 
     def edit
         @product = Product.find(params[:id])
+        @suppliers = Supplier.all
     end
 
     def update
@@ -33,7 +35,6 @@ class ProductsController < ApplicationController
     end
 
     def create
-        #render plain: params[:product].inspect
         @product = Product.new(product_params)
 
         if @product.save
@@ -45,6 +46,6 @@ class ProductsController < ApplicationController
 
     private
     def product_params
-        params.require(:product).permit(:title, :description)
+        params.require(:product).permit(:title, :description, :supplier_id)
     end
 end
