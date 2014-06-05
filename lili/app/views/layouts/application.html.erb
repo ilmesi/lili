@@ -6,22 +6,23 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <style type="text/css">
+    .content-header { padding-bottom: 9px; margin: 40px 0 20px; }
     .centered-pills { text-align:center; }
     .centered-pills ul.nav.nav-pills, .centered-pills ul.nav.nav-tabs { display:inline-block; }
     .centered-pills ul.nav.nav-pills li, .centered-pills ul.nav.nav-tabs li { display:inline; }
   </style>
 </head>
 <body>
-    <div class="page-header container centered-pills">
+    <div class="content-header centered-pills">
         <ul class="nav nav-pills">
-            <li class="active"><%= link_to 'Home', '/' %></li>
-            <li><%= link_to 'Products', controller: 'products' %></li>
-            <li><%= link_to 'Suppliers', controller: 'suppliers' %></li>
-            <li><%= link_to 'Orders', controller: 'orders' %></li>
+            <li class="<%= controller.class == WelcomeController and controller.action_name == 'index' ? 'active' : '' %>"><%= link_to 'Home', '/' %></li>
+            <li class="<%= controller.class == ProductsController and controller.action_name == 'index' ? 'active' : '' %>"><%= link_to 'Products', controller: 'products' %></li>
+            <li class="<%= controller.class == SuppliersController and controller.action_name == 'index' ? 'active' : '' %>"><%= link_to 'Suppliers', controller: 'suppliers' %></li>
+            <li class="<%= controller.class == OrdersController and controller.action_name == 'index' ? 'active' : '' %>"><%= link_to 'Orders', controller: 'orders' %></li>
         </ul>
     </div>
-
-<%= yield %>
-
+    <div class="container">
+        <%= yield %>
+    </div>
 </body>
 </html>
