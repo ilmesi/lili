@@ -10,17 +10,15 @@
     </ul>
   </div>
   <% end %>
-  <p>
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </p>
+  <div class="form-group">
+    <%= f.label :name, { class: 'control-label' } %><br>
+    <%= f.text_field :name, { class: 'form-control' } %>
+  </div>
 
-  <p>
-    <%= f.label :phone %><br>
-    <%= f.text_area :phone %>
-  </p>
+  <div class="form-group">
+    <%= f.label :phone, { class: 'control-label' } %><br>
+    <%= f.text_area :phone, { class: 'form-control' } %>
+  </div>
 
-  <p>
-    <%= f.submit %>
-  </p>
+  <%= f.submit 'Save', :class => 'btn btn-default' %>
 <% end %>
