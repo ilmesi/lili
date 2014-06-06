@@ -15,10 +15,10 @@
 <body>
     <div class="content-header centered-pills">
         <ul class="nav nav-pills">
-            <li class="<%= controller.class == WelcomeController and controller.action_name == 'index' ? 'active' : '' %>"><%= link_to 'Home', '/' %></li>
-            <li class="<%= controller.class == ProductsController and controller.action_name == 'index' ? 'active' : '' %>"><%= link_to 'Products', controller: 'products' %></li>
-            <li class="<%= controller.class == SuppliersController and controller.action_name == 'index' ? 'active' : '' %>"><%= link_to 'Suppliers', controller: 'suppliers' %></li>
-            <li class="<%= controller.class == OrdersController and controller.action_name == 'index' ? 'active' : '' %>"><%= link_to 'Orders', controller: 'orders' %></li>
+            <li class="<%= controller.class == WelcomeController ? 'active' : '' %>"><%= link_to 'Home', '/' %></li>
+            <li class="<%= controller.class == ProductsController ? 'active' : '' %>"><%= link_to 'Products', controller: 'products' %></li>
+            <li class="<%= controller.class == SuppliersController ? 'active' : '' %>"><%= link_to 'Suppliers', controller: 'suppliers' %></li>
+            <li class="<%= controller.class == OrdersController ? 'active' : '' %>"><%= link_to 'Orders', controller: 'orders' %></li>
         </ul>
     </div>
     <div class="container">
