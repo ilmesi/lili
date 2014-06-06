@@ -26,7 +26,11 @@
        url('../assets/glyphicons-halflings-regular.ttf') format('truetype'),
        url('../assets/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }
-
+.body-content {
+    max-width: 990px;
+    float: none !important;
+    margin: 0 auto;
+}
 .col-centered {
     float: none !important;
     margin: 0 auto;
