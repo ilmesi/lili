@@ -10,7 +10,7 @@
     <th colspan="3"></th>
   </tr>
 
-  <% @suppliers.each do |supplier| %>
+  <% if @suppliers.each do |supplier| %>
     <tr>
       <td><%= supplier.name %></td>
       <td><%= supplier.phone %></td>
@@ -19,5 +19,7 @@
       <td><%= link_to 'Destroy', supplier_path(supplier),
                     method: :delete, data: { confirm: 'Are you sure?' } %></td>
     </tr>
+  <% end.empty? %>
+    <td colspan="5">You have no pending orders. <%= link_to 'Create one!', new_order_path %></td>
   <% end %>
 </table>
