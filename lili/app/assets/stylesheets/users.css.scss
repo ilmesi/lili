@@ -1,0 +1,36 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.form-signing {
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+.form-signing .form-signin-heading, .form-signing .checkbox {
+    margin-bottom: 10px;
+}
+.form-signing input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.form-signing input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+.form-signing .form-control {
+    position: relative;
+    height: auto;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 16px;
+}
+.form-signing .field_with_errors {
+    padding: 0px;
+    background-color: white;
+    display: block;
+}
