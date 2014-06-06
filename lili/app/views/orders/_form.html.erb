@@ -22,7 +22,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><div class="col-centered"><select name="product" class="form-control"><%= options_from_collection_for_select(Product.all, :id, :title) %></select></div></td>
+        <td><div class="col-centered"><select name="product" class="product-select form-control"><%= options_from_collection_for_select(Product.all, :id, :title) %></select></div></td>
         <td><div class="col-xs-6 col-centered"><input name="size" type="text" class="form-control" /></div></td>
         <td><div class="col-xs-6 col-centered"><input name="amount" type="text" class="form-control" /></div></td>
         <td><div class="col-xs-7 col-centered"><input name="cost" type="text" class="form-control" /></div></td>

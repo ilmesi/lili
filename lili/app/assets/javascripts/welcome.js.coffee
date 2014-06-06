@@ -3,6 +3,9 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 ready = ->
+    $ '.product-select'
+    .select2 { placeholder: "Seleccione un producto", allowClear: true }
+
     $ 'body'
     .on 'click', '.add-item', (e) ->
         e.preventDefault()
