@@ -17,4 +17,21 @@ ready = ->
             .parents "tr"
             .after "<tr>" + new_child + "</tr>"
 
+    $ 'body'
+    .on 'click', '.remove-item', (e) ->
+        e.preventDefault()
+
+        only_one = $ "#items tbody tr"
+            .length == 1
+
+        if only_one
+            $ this
+            .parents "tr"
+            .find "input"
+            .val ""
+        else
+            $ this
+                .parents "tr"
+                .remove()
+
 $(document).ready(ready)
