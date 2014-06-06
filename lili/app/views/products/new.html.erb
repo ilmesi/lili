@@ -1,5 +1,8 @@
-<h1>New Product</h1>
+<ol class="breadcrumb">
+  <li><a href="<%= products_path %>">Products</a></li>
+  <li class="active">New Product</li>
+</ol>
 
 <%= render 'form' %>
 
-<%= link_to 'Back', products_path %>
+<%= link_to 'Back', products_path, :class => 'btn btn-lg pull-right' %>
