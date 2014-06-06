@@ -6,22 +6,22 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <style type="text/css">
-    .content-header { padding-bottom: 9px; margin: 40px 0 20px; }
-    .centered-pills { text-align:center; }
-    .centered-pills ul.nav.nav-pills, .centered-pills ul.nav.nav-tabs { display:inline-block; }
-    .centered-pills ul.nav.nav-pills li, .centered-pills ul.nav.nav-tabs li { display:inline; }
+    body { padding-top: 20px; padding-bottom: 20px; }
+    .logo-img { margin-left: 20px; }
   </style>
 </head>
 <body>
-    <div class="content-header centered-pills">
-        <ul class="nav nav-pills">
-            <li class="<%= controller.class == WelcomeController ? 'active' : '' %>"><%= link_to 'Home', '/' %></li>
-            <li class="<%= controller.class == ProductsController ? 'active' : '' %>"><%= link_to 'Products', controller: 'products' %></li>
-            <li class="<%= controller.class == SuppliersController ? 'active' : '' %>"><%= link_to 'Suppliers', controller: 'suppliers' %></li>
-            <li class="<%= controller.class == OrdersController ? 'active' : '' %>"><%= link_to 'Orders', controller: 'orders' %></li>
-        </ul>
-    </div>
     <div class="container">
+        <div class="top-header">
+          <ul class="nav nav-pills pull-right menu">
+              <li class="<%= controller.class == WelcomeController ? 'active' : '' %>"><%= link_to 'Home', '/' %></li>
+              <li class="<%= controller.class == ProductsController ? 'active' : '' %>"><%= link_to 'Products', controller: 'products' %></li>
+              <li class="<%= controller.class == SuppliersController ? 'active' : '' %>"><%= link_to 'Suppliers', controller: 'suppliers' %></li>
+              <li class="<%= controller.class == OrdersController ? 'active' : '' %>"><%= link_to 'Orders', controller: 'orders' %></li>
+          </ul>
+          <%= image_tag "logo.png", :class => "logo-img" %>
+        </div>
+        <hr>
         <%= yield %>
     </div>
 </body>
