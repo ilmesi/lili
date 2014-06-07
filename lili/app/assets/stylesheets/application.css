@@ -36,7 +36,7 @@
     margin: 0 auto;
 }
 body { padding-top: 20px; padding-bottom: 20px; }
-ul.menu { margin-top: 13px; }
+ul.menu { margin-top: 13px; margin-right: 15px; }
 .logo-img { margin-left: 20px; padding: 6px; border:1px solid transparent; }
 .logo-img:hover { border-right: 1px solid #eee; border-bottom: 1px solid #eee; }
 .logo-wrap { display: inline-block; }

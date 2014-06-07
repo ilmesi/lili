@@ -12,6 +12,7 @@
           <ul class="nav nav-pills pull-right menu">
               <% if current_user %>
               <li class="<%= controller.class == WelcomeController ? 'active' : '' %>"><%= link_to 'Home', '/' %></li>
+              <li class="<%= controller.class == ItemsController ? 'active' : '' %>"><%= link_to 'Stock', controller: 'items' %></li>
               <li class="<%= controller.class == ProductsController ? 'active' : '' %>"><%= link_to 'Products', controller: 'products' %></li>
               <li class="<%= controller.class == SuppliersController ? 'active' : '' %>"><%= link_to 'Suppliers', controller: 'suppliers' %></li>
               <li class="<%= controller.class == OrdersController ? 'active' : '' %>"><%= link_to 'Orders', controller: 'orders' %></li>
