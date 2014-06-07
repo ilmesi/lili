@@ -5,27 +5,33 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-  <style type="text/css">
-    body { padding-top: 20px; padding-bottom: 20px; }
-    .logo-img { margin-left: 20px; }
-  </style>
 </head>
 <body>
     <div class="container">
-        <div class="top-header">
+        <div class="top-header row">
           <ul class="nav nav-pills pull-right menu">
               <% if current_user %>
               <li class="<%= controller.class == WelcomeController ? 'active' : '' %>"><%= link_to 'Home', '/' %></li>
               <li class="<%= controller.class == ProductsController ? 'active' : '' %>"><%= link_to 'Products', controller: 'products' %></li>
               <li class="<%= controller.class == SuppliersController ? 'active' : '' %>"><%= link_to 'Suppliers', controller: 'suppliers' %></li>
               <li class="<%= controller.class == OrdersController ? 'active' : '' %>"><%= link_to 'Orders', controller: 'orders' %></li>
-              <li><%= link_to "Logout", :logout, method: :post %></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <i class="glyphicon glyphicon-cog"></i>
+                </a>
+                <ul class="dropdown-menu pull-right">
+                  <li><a href="#">Settings</a></li>
+                  <li><%= link_to "Logout", :logout, method: :post %></li>
+                </ul>
+              </li>
               <% else %>
               <li><%= link_to "Register", new_user_path %></li>
               <li><%= link_to "Login", :login %></li>
               <% end %>
           </ul>
-          <%= image_tag "logo.png", :class => "logo-img" %>
+          <%= link_to '/', :class => "logo-wrap" do %>
+            <%= image_tag "logo.png", :class => "logo-img" %>
+          <% end %>
         </div>
         <hr>
         <div class="body-content">
