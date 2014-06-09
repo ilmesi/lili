@@ -21,11 +21,18 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td><div class="col-centered"><select name="product" class="product-select form-control"><%= options_from_collection_for_select(Product.all, :id, :title) %></select></div></td>
-        <td><div class="col-xs-6 col-centered"><input name="size" type="text" class="form-control" /></div></td>
-        <td><div class="col-xs-6 col-centered"><input name="amount" type="text" class="form-control" /></div></td>
-        <td><div class="col-xs-7 col-centered"><input name="cost" type="text" class="form-control" /></div></td>
+      <tr data-element="1">
+        <td>
+          <div class="col-centered">
+            <select data-valid="false" name="product" class="product-select row-field form-control">
+              <option></option>
+              <%= options_from_collection_for_select(Product.all, :id, :title) %>
+            </select>
+          </div>
+        </td>
+        <td><div class="col-xs-6 col-centered"><input data-valid="false" name="size" type="text" class="row-field form-control" /></div></td>
+        <td><div class="col-xs-6 col-centered"><input data-valid="false" name="amount" type="text" class="row-field form-control" /></div></td>
+        <td><div class="col-xs-7 col-centered"><input data-valid="false" name="cost" type="text" class="row-field form-control" /></div></td>
         <td>
           <button type="button" class="add-item btn btn-default">
             <i class="glyphicon glyphicon-plus"></i>
@@ -33,6 +40,9 @@
           <button type="button" class="remove-item btn btn-default">
             <i class="glyphicon glyphicon-minus"></i>
           </button>
+          <i class="status status-idle glyphicon glyphicon-exclamation-sign"></i>
+          <i class="status status-ok glyphicon glyphicon-ok hide"></i>
+          <i class="status status-bad glyphicon glyphicon-remove hide"></i>
         </td>
       </tr>
     </tbody>
