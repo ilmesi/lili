@@ -30,9 +30,9 @@
             </select>
           </div>
         </td>
-        <td><div class="col-xs-6 col-centered"><input data-valid="false" name="size" type="text" class="row-field form-control" /></div></td>
-        <td><div class="col-xs-6 col-centered"><input data-valid="false" name="amount" type="text" class="row-field form-control" /></div></td>
-        <td><div class="col-xs-7 col-centered"><input data-valid="false" name="cost" type="text" class="row-field form-control" /></div></td>
+        <td><div class="col-xs-8 col-centered"><input data-valid="false" name="size" type="number" min="0" step="1" data-bind="value:replyNumber" class="row-field form-control integer" /></div></td>
+        <td><div class="col-xs-8 col-centered"><input data-valid="false" name="amount" type="number" min="0" step="1" data-bind="value:replyNumber" class="row-field form-control integer" /></div></td>
+        <td><div class="col-xs-9 col-centered"><input data-valid="false" name="cost" type="number" min="0" step="0.01" data-bind="value:replyNumber" class="row-field form-control" /></div></td>
         <td>
           <button type="button" class="add-item btn btn-default">
             <i class="glyphicon glyphicon-plus"></i>

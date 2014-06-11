@@ -8,6 +8,14 @@ ready = ->
         .clone()
         .html()
 
+    $ 'input.integer'
+    .bind 'keypress', (event) ->
+        regex = new RegExp /^[0-9]+$/
+        key = String.fromCharCode if !event.charCode then event.which else event.charCode
+        if !regex.test(key)
+           event.preventDefault()
+           return false
+
     $ '.product-select'
     .select2 { placeholder: "Seleccione un producto" }
 
