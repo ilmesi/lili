@@ -11,20 +11,22 @@ ready = ->
     $ '.product-select'
     .select2 { placeholder: "Seleccione un producto" }
 
+    add_new_row = ($element) ->
+        $element
+            .parents "tr"
+            .after "<tr data-valid='false'>" + default_child + "</tr>"
+
+        $element
+            .parents "tr"
+            .next 'tr'
+            .find '.product-select'
+            .select2 { placeholder: "Seleccione un producto" }
+
     $ 'body'
     .on 'click', '.add-item', (e) ->
         e.preventDefault()
-
-        tr_length = $ "#items tbody tr"
-            .length + 1
-
-        $ this
-            .parents "tr"
-            .after "<tr data-steps='0' data-element='" + tr_length + "'>" + default_child + "</tr>"
-
-        $ "tr[data-element='" + tr_length + "']"
-            .find '.product-select'
-            .select2 { placeholder: "Seleccione un producto" }
+        add_new_row $ this
+        return true
 
     $ 'body'
     .on 'click', '.remove-item', (e) ->
@@ -34,14 +36,10 @@ ready = ->
             .length == 1
 
         if only_one
-            $ this
+            add_new_row $ this
+        $ this
             .parents "tr"
-            .find "input"
-            .val ""
-        else
-            $ this
-                .parents "tr"
-                .remove()
+            .remove()
 
     validate_field = (e, element, value) ->
         e.preventDefault()
@@ -90,6 +88,8 @@ ready = ->
                     .find '.status-ok'
                     .show()
                     .toggleClass('hide')
+                $ this
+                    .attr "data-valid", true
         else
             if !$current.hasClass("status-bad")
                 $ this
@@ -99,6 +99,92 @@ ready = ->
                     .find '.status-bad'
                     .show()
                     .toggleClass('hide')
+                $ this
+                    .attr "data-valid", false
+
+    load_items = ->
+        $ '#order-modal'
+            .modal 'toggle'
+
+        ready =
+            $ '#items tbody tr[data-valid="true"]'
+            .length > 0
+
+        console.log ready
+
+        if !ready
+            $ '#final-order tbody #empty-row'
+                .show()
+            $("#save-order").attr('disabled', 'disabled');
+            $("#create-order").attr('disabled', 'disabled');
+            return
+
+        $ '#final-order tbody #progress-row'
+            .show()
+        $ '#final-order tbody #empty-row'
+            .hide()
+        $("#save-order").removeAttr('disabled');
+        $("#create-order").removeAttr('disabled');
+
+        items_list = []
+        items_rows = ''
+        $ '#items tbody tr'
+            .each ->
+                item = {}
+                item['product'] =
+                    $ this
+                        .find "[name='product']"
+                        .find "option:selected"
+                        .text()
+                item['size'] =
+                    $ this
+                        .find "[name='size']"
+                        .val()
+                item['amount'] =
+                    $ this
+                        .find "[name='amount']"
+                        .val()
+                item['cost'] =
+                    $ this
+                        .find "[name='cost']"
+                        .val()
+                items_list .push item
+                row_item = (item) ->
+                    "<tr><td>#{item['product']}</td><td>#{item['size']}</td><td>#{item['amount']}</td><td>#{item['cost']}</td></tr>"
+
+                items_rows += row_item(item)
+
+        $bar = $ '#order-progress'
+        setTimeout ->
+            $bar .width "30%"
+        , 1000
+        setTimeout ->
+            $bar .width "60%"
+        , 1000
+        setTimeout ->
+            $bar .width "100%"
+        , 1000
+        setTimeout ->
+            $bar
+                .width "0"
+                .parent()
+                .hide()
+            $ '#final-order tbody tr.disposable-row'
+                .hide()
+            $ '#final-order tbody'
+                .append items_rows
+        , 2000
+
+    $ 'form#new_order'
+    .on 'hidden.bs.modal', (e) ->
+        alert "bye"
+
+    $ 'form#new_order'
+    .submit (e) ->
+        self = this
+        e.preventDefault()
+        load_items()
+        return false;
 
 $(document).ready(ready)
 $(document).on('page:load', ready);
