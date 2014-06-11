@@ -102,34 +102,14 @@ ready = ->
                 $ this
                     .attr "data-valid", false
 
-    show_progress_bar = (items_rows) ->
-        $ '#final-order tbody #progress-row'
-            .show()
-        $bar = $ '#order-progress'
-        setTimeout ->
-            $bar .width "30%"
-        , 1000
-        setTimeout ->
-            $bar .width "60%"
-        , 1000
-        setTimeout ->
-            $bar .width "100%"
-        , 1000
-        setTimeout ->
-            $bar
-                .width "0"
-                .parents "tr"
-                .hide()
-            $ '#final-order tbody tr.disposable-row'
-                .hide()
-            $ '#final-order tbody'
-                .append items_rows
-        , 2000
-
     clear_order_items = ->
         $ '#final-order tbody tr'
             .not '.disposable-row'
             .remove()
+
+    add_order_items = (items_rows) ->
+        $ '#final-order tbody'
+            .append items_rows
 
     load_items = ->
         $ '#order-modal'
@@ -183,7 +163,7 @@ ready = ->
 
                 items_rows += row_item(item)
 
-        show_progress_bar items_rows
+        add_order_items items_rows
 
     $ 'form#new_order'
     .on 'hidden.bs.modal', (e) ->
