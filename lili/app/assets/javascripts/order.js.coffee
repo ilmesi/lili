@@ -122,7 +122,7 @@ ready = ->
     get_items = ->
         items_rows = ''
 
-        $ '#items tbody tr'
+        $ '#items tbody tr[data-valid="true"]'
         .each ->
             item = {}
             item['product'] =
@@ -169,7 +169,7 @@ ready = ->
 
         add_order_items items
 
-    $ 'form#new_order'
+    $ '#order-modal'
     .on 'hidden.bs.modal', (e) ->
         clear_order_items()
         $ '#final-order tbody #empty-row'
