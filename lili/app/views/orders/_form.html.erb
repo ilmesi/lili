@@ -1,52 +1,39 @@
-<%= form_for @order do |f| %>
-  <% if @order.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@order.errors.count, "error") %> prohibited
-      this order from being saved:</h2>
-    <ul>
-    <% @order.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
-  </div>
-  <% end %>
-  <table id="items" class="table">
-    <thead>
-      <tr>
-        <th class="col-md-2 text-center">Product</th>
-        <th class="col-md-1 text-center">Size</th>
-        <th class="col-md-1 text-center">Quantity</th>
-        <th class="col-md-1 text-center">Unit cost</th>
-        <th class="col-md-1"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr data-valid="false">
-        <td>
-          <div class="col-centered">
-            <select data-valid="false" name="product" class="product-select row-field form-control">
-              <option></option>
-              <%= options_from_collection_for_select(Product.all, :id, :title) %>
-            </select>
-          </div>
-        </td>
-        <td><div class="col-xs-8 col-centered"><input data-valid="false" name="size" type="number" min="0" step="1" data-bind="value:replyNumber" class="row-field form-control integer" /></div></td>
-        <td><div class="col-xs-8 col-centered"><input data-valid="false" name="amount" type="number" min="0" step="1" data-bind="value:replyNumber" class="row-field form-control integer" /></div></td>
-        <td><div class="col-xs-9 col-centered"><input data-valid="false" name="cost" type="number" min="0" step="0.01" data-bind="value:replyNumber" class="row-field form-control" /></div></td>
-        <td>
-          <button type="button" class="add-item btn btn-default">
-            <i class="glyphicon glyphicon-plus"></i>
-          </button>
-          <button type="button" class="remove-item btn btn-default">
-            <i class="glyphicon glyphicon-minus"></i>
-          </button>
-          <i class="status status-idle glyphicon glyphicon-exclamation-sign"></i>
-          <i class="status status-ok glyphicon glyphicon-ok hide"></i>
-          <i class="status status-bad glyphicon glyphicon-remove hide"></i>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+<table id="items" class="table">
+  <thead>
+    <tr>
+      <th class="col-md-2 text-center">Product</th>
+      <th class="col-md-1 text-center">Size</th>
+      <th class="col-md-1 text-center">Quantity</th>
+      <th class="col-md-1 text-center">Unit cost</th>
+      <th class="col-md-1"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr data-valid="false">
+      <td>
+        <div class="col-centered">
+          <select data-valid="false" name="product" class="product-select row-field form-control">
+            <option></option>
+            <%= options_from_collection_for_select(Product.all, :id, :title) %>
+          </select>
+        </div>
+      </td>
+      <td><div class="col-xs-8 col-centered"><input data-valid="false" name="size" type="number" min="0" step="1" data-bind="value:replyNumber" class="row-field form-control integer" /></div></td>
+      <td><div class="col-xs-8 col-centered"><input data-valid="false" name="amount" type="number" min="0" step="1" data-bind="value:replyNumber" class="row-field form-control integer" /></div></td>
+      <td><div class="col-xs-9 col-centered"><input data-valid="false" name="cost" type="number" min="0" step="0.01" data-bind="value:replyNumber" class="row-field form-control" /></div></td>
+      <td>
+        <button type="button" class="add-item btn btn-default">
+          <i class="glyphicon glyphicon-plus"></i>
+        </button>
+        <button type="button" class="remove-item btn btn-default">
+          <i class="glyphicon glyphicon-minus"></i>
+        </button>
+        <i class="status status-idle glyphicon glyphicon-exclamation-sign"></i>
+        <i class="status status-ok glyphicon glyphicon-ok hide"></i>
+        <i class="status status-bad glyphicon glyphicon-remove hide"></i>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-  <%= f.submit 'Save', :class => 'btn btn-primary btn-lg active pull-right' %>
-<% end %>
+<button id="show-order" class="btn btn-primary btn-lg active pull-right">Save</button>

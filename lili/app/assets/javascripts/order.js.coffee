@@ -119,6 +119,37 @@ ready = ->
         $ '#final-order tbody'
             .append items_rows
 
+    get_items = ->
+        items_rows = ''
+
+        $ '#items tbody tr'
+        .each ->
+            item = {}
+            item['product'] =
+                $ this
+                    .find "[name='product']"
+                    .find "option:selected"
+                    .text()
+            item['size'] =
+                $ this
+                    .find "[name='size']"
+                    .val()
+            item['amount'] =
+                $ this
+                    .find "[name='amount']"
+                    .val()
+            item['cost'] =
+                $ this
+                    .find "[name='cost']"
+                    .val()
+
+            row_item = (item) ->
+                "<tr><td>#{item['product']}</td><td>#{item['size']}</td><td>#{item['amount']}</td><td>#{item['cost']}</td></tr>"
+
+            items_rows += row_item(item)
+
+        return items_rows
+
     load_items = ->
         $ '#order-modal'
             .modal 'toggle'
@@ -130,56 +161,26 @@ ready = ->
         if !ready
             $ '#final-order tbody #empty-row'
                 .show()
-            clear_order_items()
             $("#save-order").attr('disabled', 'disabled');
             $("#create-order").attr('disabled', 'disabled');
             return
 
-        $ '#final-order tbody #empty-row'
-            .hide()
-        $("#save-order").removeAttr('disabled');
-        $("#create-order").removeAttr('disabled');
+        items = get_items()
 
-        items_list = []
-        items_rows = ''
-
-        clear_order_items()
-
-        $ '#items tbody tr'
-            .each ->
-                item = {}
-                item['product'] =
-                    $ this
-                        .find "[name='product']"
-                        .find "option:selected"
-                        .text()
-                item['size'] =
-                    $ this
-                        .find "[name='size']"
-                        .val()
-                item['amount'] =
-                    $ this
-                        .find "[name='amount']"
-                        .val()
-                item['cost'] =
-                    $ this
-                        .find "[name='cost']"
-                        .val()
-                items_list .push item
-                row_item = (item) ->
-                    "<tr><td>#{item['product']}</td><td>#{item['size']}</td><td>#{item['amount']}</td><td>#{item['cost']}</td></tr>"
-
-                items_rows += row_item(item)
-
-        add_order_items items_rows
+        add_order_items items
 
     $ 'form#new_order'
     .on 'hidden.bs.modal', (e) ->
-        alert "bye"
+        clear_order_items()
+        $ '#final-order tbody #empty-row'
+            .hide()
+        $ "#save-order"
+            .removeAttr 'disabled'
+        $ "#create-order"
+            .removeAttr 'disabled'
 
-    $ 'form#new_order'
-    .submit (e) ->
-        self = this
+    $ 'button#show-order'
+    .click (e) ->
         e.preventDefault()
         load_items()
         return false;
