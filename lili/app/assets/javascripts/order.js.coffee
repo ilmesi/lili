@@ -62,7 +62,7 @@ ready = ->
         return valid_data;
 
     $ 'body'
-    .on 'blur', 'input.row-field', (e) ->
+    .on 'change', 'input.row-field', (e) ->
         return validate_field(
             e, $(this) , $(this).val()
         )
@@ -85,7 +85,7 @@ ready = ->
             .length
 
         $current = $ this
-        .find(".status:not('.hide')")
+        .find(".status:visible")
 
         if all_fields == valid_fields
             if !$current.hasClass("status-ok")
@@ -95,7 +95,6 @@ ready = ->
                 $ this
                     .find '.status-ok'
                     .show()
-                    .toggleClass('hide')
                 $ this
                     .attr "data-valid", true
         else
@@ -106,7 +105,6 @@ ready = ->
                 $ this
                     .find '.status-bad'
                     .show()
-                    .toggleClass('hide')
                 $ this
                     .attr "data-valid", false
 
